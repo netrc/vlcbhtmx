@@ -1,0 +1,34 @@
+
+
+body {
+  background-color: hsla(205, 46%, 10%, 1);
+  background-color: linear-gradient(90deg, hsla(205, 46%, 10%, 1) 0%, hsla(191, 28%, 23%, 1) 50%, hsla(207, 41%, 27%, 1) 100%);
+}
+
+span.navRow {
+  width: 100%;
+}
+
+div.logo {
+}
+img.logo {
+  height: 30pt;
+  width: 30pt;
+  background-color: gold;
+  filter: invert(94%) sepia(6%) saturate(1769%) hue-rotate(191deg) brightness(85%) contrast(86%);
+  /* weird way to change colors
+     https://stackoverflow.com/questions/22252472/how-can-i-change-the-color-of-an-svg-element 
+     - See "Solution 3 - CSS Filter property"
+     https://codepen.io/sosuke/pen/Pjoqqp
+  */
+}
+
+div.navButton {
+  height: 26pt;
+  color: gold;
+}
+
+h1.leftHeader {
+  color: gold;
+}
+

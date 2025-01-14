@@ -1,0 +1,16 @@
+{
+  "name": "vlcbhtmx",
+  "version": "0.0.1",
+  "description": "vlcb viewer w/ htmx",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "netrc",
+  "license": "ISC",
+  "dependencies": {
+    "morgan": "^1.10.0",
+    "winston": "^3.17.0"
+  }
+}
