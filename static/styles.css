@@ -9,8 +9,6 @@ span.navRow {
   width: 100%;
 }
 
-div.logo {
-}
 img.logo {
   height: 30pt;
   width: 30pt;
@@ -23,9 +21,35 @@ img.logo {
   */
 }
 
+img.church_full {
+  width: 300pt;
+}
+
+div.navBar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 div.navButton {
   height: 26pt;
+  width: 100pt;
   color: gold;
+}
+
+div.listAndMainInfo {
+  display: grid;
+  grid-template-columns: 20% 80%;     /* two columns */
+  grid-template-rows: 100%;           /* one row */
+}
+
+div.leftList {
+  padding: 20px;
+}
+div.mainInfo {
+  padding: 20px;
+  color: #ddd;
+  background-color: #222;
 }
 
 h1.leftHeader {

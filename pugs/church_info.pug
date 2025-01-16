@@ -1,0 +1,16 @@
+
+
+div.mainInfo
+  img.church_full(src=c.picturesVals[0].full)
+  h2 #{c.name}
+  p year: #{c.year}
+  p address: #{c.address}
+  p latlon: #{c.latlon}
+  p Brasses:
+  ul
+    each b in c.BrassesVals
+      li #{b.name}
+    
+  div !{c.mainNoteHTML}
+  
+    

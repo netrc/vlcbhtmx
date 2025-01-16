@@ -1,20 +1,26 @@
 <html>
 <head>
   <title> v-htmx </title>
-  <link rel="stylesheet" type="text/css" href="styles.css" />
-  <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
+  <link rel='stylesheet' type='text/css' href='styles.css' />
+  <script src='https://unpkg.com/htmx.org@2.0.4' integrity='sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+' crossorigin='anonymous'></script>
 </head>
 <body>
 
 <div class='navBar'>
-  <div class='logo'> <img class="logo" src="knight.svg" height="20pt" width="20pt"/> </div>
-  <div class='navButton' hx-get="/churches" hx-target="#main"> Churches </div>
-  <div class='navButton' hx-get="/brasses"  hx-target="#main"> Brasses </div>
-  <div class='navButton' hx-get="/rubbings" hx-target="#main"> Rubbings </div>
-  <!-- was with hx-trigger="click" hx-target="#main" --> 
+  <img class='logo' src='knight.svg' height='20pt' width='20pt'/> 
+  <div class='navButton' hx-get='/churches' hx-target='#main'> Churches </div>
+  <div class='navButton' hx-get='/brasses'  hx-target='#main'> Brasses </div>
+  <div class='navButton' hx-get='/rubbings' hx-target='#main'> Rubbings </div>
+  <form>
+  <input type='text' hx-trigger='click' hx-post='/churchInfo' hx-vals='{"cname": "something"}' hx-vars='myVar:fooVal' name='my button name' hx-target='#main'> inp htmx </input>
+  <label hx-trigger='click' hx-post='/churchInfo' hx-vals='{"cname": "label cname"}' hx-vars='lavelVar:fooVal' name='my label name' hx-target='#main'> lab htmx </input>
+  <input type='button' hx-trigger='click' hx-post='/churchInfo' hx-vals='{"cname": "inp but cname"}' hx-vars='what:inpButton' name='my inp butt  name' hx-target='#main'> inp butttt htmx </input>
+  </form>
+  </form>
+  <sd'[lkjfnkl;!-- was with hx-trigger='click' hx-target='#main' --> 
 </div>
 
-<div id="main"> </div>
+<div id='main'> </div>
 
 </body>
 </html>

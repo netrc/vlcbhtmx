@@ -10,6 +10,7 @@
   "author": "netrc",
   "license": "ISC",
   "dependencies": {
+    "marked": "^15.0.6",
     "morgan": "^1.10.0",
     "winston": "^3.17.0"
   }

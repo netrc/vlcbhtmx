@@ -4,6 +4,7 @@ const { logger } = require('./log.js')  // creates logger
 const morgan = require('morgan');
 const path = require('path');
 const glob = require('glob');
+const marked = require('marked');
 const pug = require('/rc/sw/node_modules/pug/node_modules/pug')
 
 const db = require('./db.js')  // creates logger
@@ -62,12 +63,17 @@ const setup_app = async () => {
   app.get('/repug', (req, res) => {
     pugs = getPugs()
     res.status(200)
+    res.send()
   });
 
   // statistics page - add check output too
 
   app.get('/churches', (req, res) => {
-    const pVals = { listTitle: 'Churches', cNames: Object.keys(vdb.churches).map( c => vdb.churches[c].name ) }
+console.log('/churches');console.dir(req.params)
+console.log('/churches query');console.dir(req.query)
+    const cList = Object.keys(vdb.churches).map( k => vdb.churches[k].name ).map( cname => { return {cname: cname, cURL:`/churchInfo/${cname}`} } )
+console.dir(cList)
+    const pVals = { listTitle: 'Churches', cList: cList }
     const c_html = pugs.left_list( pVals )
     res.send(c_html)
   });
@@ -81,6 +87,31 @@ const setup_app = async () => {
     const c_html = pugs.left_list( pVals )
     res.send(c_html)
   });
+  app.get('/churchInfo/:cname', (req, res) => {
+console.log('get ci params cname',req.params.cname);
+console.log('get /churchInfo');console.dir(req.params)
+console.log('get /churchInfo query');console.dir(req.query)
+    const kA = Object.keys(vdb.churches).filter( k => vdb.churches[k].name==req.params.cname )
+    const k = kA[0]
+console.log('k');console.dir(k)
+    const c = vdb.churches[k]
+console.log('c');console.dir(c)
+    c.BrassesVals = c.BrassesVals || c.Brasses?.map( b => vdb.brasses[b] ) || []
+    c.picturesVals = c.picturesVals || c.pictures?.map( p => vdb.pictures[p] )|| []
+    c.mainNoteHTML = marked.parse(c.mainNote) || '<i> no notes </i>'
+    const pVals = { c: c }
+console.log('pvals');console.dir(pVals)
+    var c_html 
+    try {
+      c_html = pugs.church_info( pVals )
+    } catch (err) {
+        console.error('error with church_info pug')
+        console.error(err)
+        res.status(505)
+        res.send()
+    }
+    res.send(c_html)
+  })
 
 
   // defaults and error handling
