@@ -1,14 +1,13 @@
 
 const express = require('/rc/sw/node_modules/express/node_modules/express')
 const { logger } = require('./log.js')  // creates logger
+const findDBservice = require('./findDBservice.js')  // RW or RO?
 const morgan = require('morgan');
 const path = require('path');
 const glob = require('glob');
 const marked = require('marked');
 const pug = require('/rc/sw/node_modules/pug/node_modules/pug')
-
 const db = require('./db.js')  // creates logger
-
 
 const justPugName = f => f.slice(5,-4)  // convert from pugs/something.pug to something
 
@@ -27,7 +26,10 @@ const setup_app = async () => {
 
   var pugs = getPugs() // may be reset during /repugs
 
-  const vdb = await db.setup()
+console.log(findDBservice)
+  const my_server = await findDBservice.checkServers()
+  console.log(`my server: ${my_server}`)
+  const vdb = await db.setup(my_server)
 
   const app = express();
   const port = process.env.PORT || 8000;

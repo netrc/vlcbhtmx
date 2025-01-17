@@ -1,15 +1,11 @@
 
+// TODO: add code to make sure just one copy
 
-// add code to make sure just one copy
+const dburlServer = (url) => (s) => url+s 
 
-
-vURL='http://v2.netrc.com:8000/vlcb2api/'
-const dburl = s => vURL+s 
-
-
-
-const setup = async () => {
+const setup = async (server) => {
   const db = { }
+  const dburl = dburlServer(server)
   db.check = await fetch(dburl('check')).then( r => r.json() );
   db.churches = await fetch(dburl('churches')).then( r => r.json() );
   db.brasses = await fetch(dburl('brasses')).then( r => r.json() );
