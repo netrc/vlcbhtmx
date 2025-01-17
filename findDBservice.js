@@ -6,6 +6,10 @@
 // TODO: or run rw server in home  network
 const rw_server = process.env.VLCBSERVER_RW   // runs in RW mode (via RW API key)
 const ro_server = process.env.VLCBSERVER_RO      // runs in RO mode (default) (via RO API key)
+if (!rw_server || !ro_server) {
+  console.error('need to set VLCBSERVER_RO and VLCBSERVER_RW')
+  process.exit(-1)
+}
 const check = server_url => server_url+'check'
 
 
