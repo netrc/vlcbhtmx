@@ -4,8 +4,8 @@
 
 // remember to lock down v2 firewall !
 // TODO: or run rw server in home  network
-const rw_server = 'http://v2.netrc.com:8000/vlcb2api/'   // runs in RW mode (via RW API key)
-const ro_server = 'https://netrc-vlcb2api.fly.dev/'      // runs in RO mode (default) (via RO API key)
+const rw_server = process.env.VLCBSERVER_RW   // runs in RW mode (via RW API key)
+const ro_server = process.env.VLCBSERVER_RO      // runs in RO mode (default) (via RO API key)
 const check = server_url => server_url+'check'
 
 
