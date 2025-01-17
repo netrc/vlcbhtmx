@@ -58,7 +58,9 @@ const setup_app = async () => {
   app.get('/', (req, res) => {
     //res.json({ message: 'Welcome to the server!' });
     const opts = { root: path.join(__dirname) }
-    res.sendFile('index.html', opts);
+    const pVals = {}
+    //res.sendFile('index.html', opts);
+    res.send(pugs.index(pVals))
   });
 
   app.get('/status', (req, res) => {
