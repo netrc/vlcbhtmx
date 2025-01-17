@@ -19,6 +19,10 @@ const getPugs = () => {
   return pugsCompiled
 }
 
+// utils
+const Okeys = o => Object.keys(o)
+const keysToNames = table => Okeys(table).map( k => table[k].name )
+
 const setup_app = async () => {
   // compile all the pugs
   // glob the pug dir?
@@ -58,32 +62,30 @@ const setup_app = async () => {
   });
 
   app.get('/status', (req, res) => {
-    const jd = { check: vdb.check }
-    res.json(jd)
+    res.json({ check: vdb.check })
   });
   app.get('/repug', (req, res) => {
     pugs = getPugs()
-    res.status(200)
-    res.send()
+    res.sendStatus(200)
   });
 
   // statistics page - add check output too
 
   // reminder - :cname is a parameter  - req.params.cname,   ?name=value  are query params   req.query
   app.get('/churches', (req, res) => {
-    const cList = Object.keys(vdb.churches).map( k => vdb.churches[k].name ).map( cname => { return {cname: cname, cURL:`/churchInfo/${cname}`} } )
+    const cList = keysToNames(vdb.churches).map( cname => { return {cname: cname, cURL:`/churchInfo/${cname}`} } )    
     const pVals = { listTitle: 'Churches', cList: cList }
     const c_html = pugs.left_list( pVals )
     res.send(c_html)
   });
   app.get('/brasses', (req, res) => {
-    const cList = Object.keys(vdb.brasses).map( k => vdb.brasses[k].name ).map( cname => { return {cname: cname, cURL:`/brassInfo/${cname}`} } ) 
+    const cList = keysToNames(vdb.brasses).map( cname => { return {cname: cname, cURL:`/brassInfo/${cname}`} } ) 
     const pVals = { listTitle: 'Brasses', cList: cList }
     const c_html = pugs.left_list( pVals )
     res.send(c_html)
   });
   app.get('/rubbings', (req, res) => {
-    const cList = Object.keys(vdb.rubbings).map( k => vdb.rubbings[k].name ).map( cname => { return {cname: cname, cURL:`/rubbingInfo/${cname}`} } )
+    const cList = keysToNames(vdb.rubbings).map( cname => { return {cname: cname, cURL:`/rubbingInfo/${cname}`} } )
     const pVals = { listTitle: 'Rubbings', cList: cList }
     const c_html = pugs.left_list( pVals )
     res.send(c_html)
@@ -134,8 +136,6 @@ const setup_app = async () => {
 }
 
 setup_app()
-
-
 
 process.on('uncaughtException', (error) => { // uncaught exceptions
 console.error(error)
