@@ -4,7 +4,8 @@ div.listAndMainInfo
   div.leftList
     h1.leftHeader= listTitle
 
-    each cl in cList
-      button(hx-get=cl.cURL, hx-target="#mainInfo")= cl.cname
+    div(hx-replace-url="true")
+      each cl in cList
+        button(hx-get=cl.cURL, hx-target="#mainInfo")= cl.cname
 
   div.mainInfo#mainInfo
