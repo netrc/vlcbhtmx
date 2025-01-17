@@ -2,7 +2,13 @@
 
 # ToDo
 
-* TODO add brassInfo
+* TODO scroll left list independently
+* DEV change URL when inserting relevent info (churchInfo, brassInfo, rubbingInfo)
+  using hx-replace-url="true" does replace url (and is inherited from div),
+  but that url is for churchInfo which is a snippet not the whole page. How to do that?
+* 2025-01-17T17:53 - change index.html to index.pug
+* DEV add brassInfo
+  text info is there but picture is not no pic ;  RubbingsVal undefined (i know?!?)
 * TODO add rubbingInfo
 * TODO leftList just one column
 * TODO mv findDBservice to db.js;  db.setup just does it;  expose db.rw_avail() return T/F; delete findDB

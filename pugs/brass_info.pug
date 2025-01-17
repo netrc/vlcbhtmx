@@ -1,0 +1,15 @@
+
+
+div.mainInfo
+  img.church_full(src=c.fullPic)
+  h2 #{c.name}
+  p year: #{c.year}
+  p Church: todo
+  p location: #{c.location}
+  p Rubbings:
+  ul
+    each r in c.RubbingsVals
+      li #{r.name}
+    
+  div !{c.mainNoteHTML}
+  
