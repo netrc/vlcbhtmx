@@ -7,6 +7,10 @@
   - fixed
 - 2025-01-18 - made sure to add root "/knight.svg" and "/nopic.jpg"
 - TODO - test that all data has a unique name
+- TODO - RubbingsVals, BrassesVals
+- TODO - Rubbings pics
+- TODO - index 'coverpic'
+- TODO - add coverpics
 
 ##Stuff
 
