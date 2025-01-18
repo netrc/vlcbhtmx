@@ -72,12 +72,10 @@ const add_routes = (app, vdb, logger) => {
   })
 
   app.get('/brassInfo/:bname', (req, res) => {
-    const kA = Object.keys(vdb.brasses).filter( k => vdb.brasses[k].name==req.params.bname )
-    const k = kA[0]
-    const c = vdb.brasses[k]
+    const c = vdb.BrassesByName[req.params.bname]
     // set some vals;  use current/cached version if available;  else get from vdb
-    c.RubbingsVals = c.RubbingsVals || c.rubbings?.map( r => vdb.rubbings[r] ) || []
-    c.picturesVals = c.picturesVals || c.pictures?.map( p => vdb.pictures[p] )|| []
+    c.RubbingsVals = c.rubbings?.map( r => vdb.rubbings[r] ) || []
+    c.picturesVals = c.pictures?.map( p => vdb.pictures[p] )|| []
     c.fullPic = c.fullPic || c.picturesVals[0]?.full ? c.picturesVals[0].full : '/nopic.jpg'
     c.mainNoteHTML = c.mainNote ? marked.parse(c.mainNote) : '<i> no notes </i>'
     const pVals = { c: c }
@@ -94,12 +92,11 @@ const add_routes = (app, vdb, logger) => {
   })
 
   app.get('/rubbingInfo/:rname', (req, res) => {
-    const kA = Object.keys(vdb.rubbings).filter( k => vdb.rubbings[k].name==req.params.rname )
-    const k = kA[0]
-    const c = vdb.rubbings[k]
+    const c = vdb.RubbingsByName[req.params.rname]
     // set some vals;  use current/cached version if available;  else get from vdb
     //c.picturesVals = /*c.picturesVals ||*/ c.pictures?.map( p => vdb.pictures[p] )|| []
     //c.fullPic = /*c.fullPic ||*/ c.picturesVals[0]?.full ? c.picturesVals[0].full : '/nopic.jpg'
+    c.fullPic = '/nopic.jpg'
     c.mainNoteHTML = c.mainNote ? marked.parse(c.mainNote) : '<i> no notes </i>'
     const pVals = { c: c }
     var c_html 
