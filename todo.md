@@ -11,6 +11,8 @@
 - TODO - Rubbings pics
 - TODO - index 'coverpic'
 - TODO - add coverpics
+- NOTE - what are the tags
+- NOTE - use git -m $(mindate) todo.md
 
 ##Stuff
 
