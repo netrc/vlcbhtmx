@@ -16,24 +16,27 @@ const check = server_url => server_url+'check'
 // TODO: FORCE_RO env var
 
 const checkServers = async () => {
-  var server = rw_server
+  var server = {
+    url: rw_server,
+    isRW: true
+  }
   try {
-    const data = fetch(check(server)).then( resp => resp.json() )
+    const data = fetch(check(server.url)).then( resp => resp.json() )
   } catch (err) {
     // failure? then no access to RW, hence RO
-    console.error(err)
-    server = ro_server
+    console.error(err, 'switching to RO server')
+    server.url = ro_server
+    server.isRW = false
   }
   return server
 }
 
-
+// for testing
 const run_site = async () => {
   const my_server = await checkServers()
-  console.log('available server: ', my_server)
+  console.log(`available server: ${my_server.url}  isRW: ${my_server.isRW}`)
 }
-
-//run_site() // for testing
+//run_site() 
 
 
 module.exports = {

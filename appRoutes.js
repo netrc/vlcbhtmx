@@ -7,19 +7,29 @@ const justPugName = f => f.slice(5,-4)  // convert from pugs/something.pug to so
 const getPugs = () => {
   pugFiles = glob.sync('pugs/*.pug')
   pugsCompiled = pugFiles.reduce( (a,c) => { a[justPugName(c)] = pug.compileFile(c); return a }, {} )
-  //logger.info(`got pugs: ${Object.keys(pugsCompiled)}`)
   return pugsCompiled
 }
 
-var pugs = getPugs() // may be reset during /repugs
 // utils
 const Okeys = o => Object.keys(o)
 const keysToNames = table => Okeys(table).map( k => table[k].name )
 
-// statistics page - add check output too
-
 // reminder - :cname is a parameter  - req.params.cname,   ?name=value  are query params   req.query
 const add_routes = (app, vdb, logger) => {
+  var pugs = getPugs() // may be reset during /repugs
+  logger.info(`got pugs: ${Object.keys(pugsCompiled)}`)
+
+  app.get('/', (req, res) => {
+    res.send(pugs.index())
+  });
+  app.get('/status', (req, res) => {
+    res.json({ check: vdb.check })
+  });
+  app.get('/repug', (req, res) => {
+    pugs = getPugs()
+    res.sendStatus(200)
+  });
+
   app.get('/churches', (req, res) => {
     const cList = keysToNames(vdb.churches).map( cname => { return {cname: cname, cURL:`/churchInfo/${cname}`} } )    
     const pVals = { listTitle: 'Churches', cList: cList }
@@ -42,6 +52,7 @@ const add_routes = (app, vdb, logger) => {
     const kA = Object.keys(vdb.churches).filter( k => vdb.churches[k].name==req.params.cname )
     const k = kA[0]
     const c = vdb.churches[k]
+    //const c = vdb.churchesByName[req.params.cname]
     // set some vals;  use current/cached version if available;  else get from vdb
     c.BrassesVals = c.BrassesVals || c.Brasses?.map( b => vdb.brasses[b] ) || []
     c.picturesVals = c.picturesVals || c.pictures?.map( p => vdb.pictures[p] )|| []

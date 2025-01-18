@@ -7,9 +7,10 @@
   using hx-replace-url="true" does replace url (and is inherited from div),
   but that url is for churchInfo which is a snippet not the whole page. How to do that?
 - 2025-01-17T17:53 - change index.html to index.pug
-- DEV add brassInfo
+- INDEV add brassInfo
+- BUG RubbingVals ?
   text info is there but picture is not no pic ;  RubbingsVal undefined (i know?!?)
-- TODO add rubbingInfo
+- INDEV add rubbingInfo
 - TODO leftList just one column
 - TODO mv findDBservice to db.js;  db.setup just does it;  expose db.rw_avail() return T/F; delete findDB
 - TODO change server.js code from clist to leftList, etc; genericize for left_list.pug
