@@ -5,6 +5,15 @@ const findDBservice = require('./findDBservice.js')  // RW or RO?
 
 const dburlServer = (url) => (s) => url+s 
 
+
+// reducer helper - set accumulator object field (churches.name) to the object
+const keysToField = (obj,field) => (a,c) => { a[obj[c][field]] = obj[c]; return a}
+// convert an object with rec# keys to object with 'field' (name) keys
+const keysObjToField = (field) => (obj) => Object.keys(obj).reduce( keysToField(obj,field), {} )
+const keysObjToName = keysObjToField('name')
+
+//const keysObjToName = obj => Object.keys(obj).reduce( (a,c) => { a[obj[c]['name']] = obj[c]; return a}, {} )
+
 const setup = async (server) => {
   const my_server = await findDBservice.checkServers()
 
@@ -18,7 +27,8 @@ const setup = async (server) => {
   db.notes = await fetch(dburl('notes')).then( r => r.json() );
 
   // do some indexing, filtering
-  db.churchesByName = Object.keys(db.churches).reduce( (a,c) => { a[c.name] = c; return a},  {})
+  //db.churchesByName = Object.keys(db.churches).reduce( (a,c) => { a[db.churches[c].name] = db.churches[c]; return a},  {})
+  db.churchesByName = keysObjToName(db.churches)
   db.brassesByName = Object.keys(db.brasses).reduce( (a,c) => { a[c.name] = c; return a},  {})
   db.rubbingssByName = Object.keys(db.rubbings).reduce( (a,c) => { a[c.name] = c; return a},  {})
   db.my_server = my_server
