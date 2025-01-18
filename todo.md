@@ -2,6 +2,14 @@
 
 # ToDo
 
+## Next
+- BUG appRoutes.js line 57;  BrassesVals causes a problem if using churchesByName ?? syntax problem?
+  - fixed
+- 2025-01-18 - made sure to add root "/knight.svg" and "/nopic.jpg"
+- TODO - test that all data has a unique name
+
+##Stuff
+
 - TODO scroll left list independently
 - DEV change URL when inserting relevent info (churchInfo, brassInfo, rubbingInfo)
   using hx-replace-url="true" does replace url (and is inherited from div),
