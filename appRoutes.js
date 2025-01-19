@@ -30,6 +30,29 @@ const add_routes = (app, vdb, logger) => {
     res.sendStatus(200)
   });
 
+  app.get('/info/about', (req, res) => {
+    const notes = Object.keys(vdb.notes).filter( n => vdb.notes[n].category=='about' )
+    if (notes.length!=1) {
+      res.sendStatus(500)
+    }
+    const info_html = marked.parse(vdb.notes[notes[0]].mdtext)
+    const about_html = pugs.info_one( { info_html } )
+    res.send(about_html)
+  })
+  app.get('/info/blog', (req, res) => {
+    const notes = Object.keys(vdb.notes).filter( n => vdb.notes[n].category=='blog' )
+    if (notes.length==0) {
+      res.sendStatus(500)
+    }
+    const blog_entries = notes.map( n => vdb.notes[n] )
+    blog_entries.forEach( b => {
+      b.html = marked.parse(b.mdtext)
+    })
+    const blog_html = pugs.info_blog( { blog_entries } )
+    res.send(blog_html)
+  })
+
+
   app.get('/churches', (req, res) => {
     const cList = keysToNames(vdb.churches).map( cname => { return {cname: cname, cURL:`/churchInfo/${cname}`} } )    
     const pVals = { listTitle: 'Churches', cList: cList }
