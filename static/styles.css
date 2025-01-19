@@ -13,6 +13,7 @@ img.logo {
   height: 30pt;
   width: 30pt;
   background-color: gold;
+  margin-right: 50px;
   filter: invert(94%) sepia(6%) saturate(1769%) hue-rotate(191deg) brightness(85%) contrast(86%);
   /* weird way to change colors
      https://stackoverflow.com/questions/22252472/how-can-i-change-the-color-of-an-svg-element 
@@ -28,14 +29,30 @@ img.church_full {
 div.navBar {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
 }
 
 div.navButton {
   height: 26pt;
-  width: 100pt;
+  width: 200pt;
+  text-align: left;
   color: gold;
 }
+
+div.dropdownMenu {
+  position: absolute;
+  top: 50px; /* Adjust based on button-row height */
+  /*left: 0;*/ 
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  display: block; 
+}
+
+.navBar button.active + .options-list {
+  display: block; 
+}
+
 
 div.listAndMainInfo {
   display: flex;
