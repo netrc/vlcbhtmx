@@ -54,11 +54,11 @@ const add_routes = (app, vdb, logger) => {
     //c.BrassesVals = c.BrassesVals || c.Brasses?.map( b => vdb.brasses[b] ) || []
     //c.picturesVals = c.picturesVals || c.pictures?.map( p => vdb.pictures[p] )|| []
     //c.fullPic = c.fullPic || c.picturesVals[0]?.full ? c.picturesVals[0].full : '/nopic.jpg'
-    c.BrassesVals = c.Brasses?.map( b => vdb.brasses[b] ) || []
+    c.brassesVals = c.Brasses?.map( b => vdb.brasses[b] ) || []    // Note that the airtable is named 'Brasses'
     c.picturesVals = c.pictures?.map( p => vdb.pictures[p] )|| []
     c.fullPic = c.picturesVals[0]?.full ? c.picturesVals[0].full : '/nopic.jpg'
     c.mainNoteHTML = c.mainNote ? marked.parse(c.mainNote) : '<i> no notes </i>'
-    const pVals = { c: c }
+    const pVals = { c }
     var c_html 
     try {
       c_html = pugs.church_info( pVals )
@@ -72,9 +72,9 @@ const add_routes = (app, vdb, logger) => {
   })
 
   app.get('/brassInfo/:bname', (req, res) => {
-    const c = vdb.BrassesByName[req.params.bname]
+    const c = vdb.brassesByName[req.params.bname]
     // set some vals;  use current/cached version if available;  else get from vdb
-    c.RubbingsVals = c.rubbings?.map( r => vdb.rubbings[r] ) || []
+    c.rubbingsVals = c.rubbings?.map( r => vdb.rubbings[r] ) || []
     c.picturesVals = c.pictures?.map( p => vdb.pictures[p] )|| []
     c.fullPic = c.fullPic || c.picturesVals[0]?.full ? c.picturesVals[0].full : '/nopic.jpg'
     c.mainNoteHTML = c.mainNote ? marked.parse(c.mainNote) : '<i> no notes </i>'
@@ -92,7 +92,7 @@ const add_routes = (app, vdb, logger) => {
   })
 
   app.get('/rubbingInfo/:rname', (req, res) => {
-    const c = vdb.RubbingsByName[req.params.rname]
+    const c = vdb.rubbingsByName[req.params.rname]
     // set some vals;  use current/cached version if available;  else get from vdb
     //c.picturesVals = /*c.picturesVals ||*/ c.pictures?.map( p => vdb.pictures[p] )|| []
     //c.fullPic = /*c.fullPic ||*/ c.picturesVals[0]?.full ? c.picturesVals[0].full : '/nopic.jpg'
