@@ -3,9 +3,6 @@
 # ToDo
 
 ## Next
-- 2025-01-19 appRoutes.js line 57;  BrassesVals causes a problem if using churchesByName ?? syntax problem?
-  - fixed
-- 2025-01-18 - made sure to add root "/knight.svg" and "/nopic.jpg"
 - TODO - test that all data has a unique name
 - TODO - RubbingsVals - use vlcn, not name
 - TODO - Rubbings pics
@@ -64,7 +61,9 @@
 
 
 
-
+# Done
+- 2025-01-19 appRoutes.js line 57;  BrassesVals causes a problem if using churchesByName ?? syntax problem?
+- 2025-01-18 - made sure to add root "/knight.svg" and "/nopic.jpg"
 
 
 
