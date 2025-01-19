@@ -4,7 +4,7 @@
 
 ## Next
 - TODO - test that all data has a unique name
-- TODO - RubbingsVals - use vlcn, not name
+- TODO - RubbingsVals - use vlcn, not name; because rubbings.name can be wrong !so what is referential integrity of mapping rubbings to brasses; what is done with unknown rubbings
 - TODO - Rubbings pics
 - TODO - index 'coverpic'
 - TODO - add coverpics
