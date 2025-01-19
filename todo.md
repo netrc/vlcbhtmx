@@ -3,6 +3,14 @@
 # ToDo
 
 ## Next
+- TODO about page editing
+- TODO need to add in rec# to the pug vars, so we can send back markdown text 
+  - POST blog/new?mdtext=aslfkjasldfja     /blog/:index
+  - TODO update vldb2api to accept POST
+  - TODO make sure v2 vldb2api uses RW token
+  - TODO test vlcb2api
+  - TODO blog new button, new div, textarea, expanable, cancel, submit buttons
+  - POST churches/rec#?mainNote=aslfkjasldfja & year=1410    /churches/:index
 - TODO - test that all data has a unique name
 - TODO - RubbingsVals - use vlcn, not name; because rubbings.name can be wrong !so what is referential integrity of mapping rubbings to brasses; what is done with unknown rubbings
 - TODO - Rubbings pics
