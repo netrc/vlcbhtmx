@@ -7,7 +7,8 @@ const dburlServer = (url) => (s) => url+s
 
 
 // reducer helper - set accumulator object field (churches.name) to the object
-const keysToField = (obj,field) => (a,c) => { a[obj[c][field]] = obj[c]; return a}
+// note that some airtable data has trailing spaces
+const keysToField = (obj,field) => (a,c) => { a[obj[c][field].trim()] = obj[c]; return a}
 // convert an object with rec# keys to object with 'field' (name) keys
 const keysObjToField = (field) => (obj) => Object.keys(obj).reduce( keysToField(obj,field), {} )
 const keysObjToName = keysObjToField('name')
